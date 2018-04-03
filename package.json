@@ -1,8 +1,8 @@
 {
-  "name": "vue-element-admin",
+  "name": "vue-admin-base",
   "version": "3.6.4",
-  "description": "A magical vue admin. Typical templates for enterprise applications. Newest development stack of vue. Lots of awesome features",
-  "author": "Pan <panfree23@gmail.com>",
+  "description": "A basic framework of background management system based on Vue technology stack and ElementUI framework.",
+  "author": "CuityMiko <15201776956@163.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
