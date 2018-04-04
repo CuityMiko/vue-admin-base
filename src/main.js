@@ -15,6 +15,11 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+// 使用代理的方式请求URLaxios request
+import Axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, Axios)
+
 Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false

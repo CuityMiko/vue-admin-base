@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
-      <h3 class="title">vue-element-admin</h3>
+      <h3 class="title">CJ-Admin</h3>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
           <svg-icon icon-class="user" />
@@ -72,6 +72,9 @@ export default {
       }
     },
     handleLogin() {
+      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
+      //   console.log(res.data.data)
+      // })
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
