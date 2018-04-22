@@ -17,6 +17,19 @@ module.exports = {
         pathRewrite: {
           '^/douyuapi': '/api'
         }
+      },
+      '/mockapi': {
+        target: 'https://www.easy-mock.com/mock/59bce026e0dc663341ac6dad/cstore/',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/mockapi': ''   // 需要rewrite重写
+        }
+      },
+      '/testapi/*': {
+        target: 'http://192.168.0.107:10086/',
+        secure: false,
+        changeOrigin: true
       }
     },
 
@@ -31,7 +44,7 @@ module.exports = {
     // Use Eslint Loader?
     // If true, your code will be linted during bundling and
     // linting errors and warnings will be shown in the console.
-    useEslint: true,
+    useEslint: false,
     // If true, eslint errors and warnings will also be shown in the error overlay
     // in the browser.
     showEslintErrorsInOverlay: false,

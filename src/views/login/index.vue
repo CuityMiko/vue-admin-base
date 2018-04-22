@@ -22,6 +22,11 @@
           Sign in
         </el-button>
       </el-form-item>
+      <el-form-item v-show="false">
+        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="testapi">
+          test api
+        </el-button>
+      </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: admin</span>
@@ -32,6 +37,8 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
+
+import * as testapi from '@/api/test'
 
 export default {
   name: 'login',
@@ -89,6 +96,20 @@ export default {
           return false
         }
       })
+    },
+    testapi() {
+      testapi.getdoubandata(this).then(data => {
+        console.log(data);
+      })
+      testapi.getmockdata(this,2).then(data => {
+        console.log(data);
+      })
+      testapi.getnodedata(this).then(data => {
+        console.log(data);
+      })
+      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
+      //   console.log(res.data.data)
+      // })
     }
   }
 }
