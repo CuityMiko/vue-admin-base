@@ -70,6 +70,15 @@ export default {
       pwdType: 'password'
     }
   },
+  mounted () {
+    var socket = io.connect('47.97.190.44:3003');
+    // 监听从服务器端传过来的消息
+    socket.on("notice", function(msg) {
+        if (msg) {
+            this.$message(msg)
+        }
+    });
+  },
   methods: {
     showPwd() {
       if (this.pwdType === 'password') {
@@ -79,9 +88,10 @@ export default {
       }
     },
     handleLogin() {
-      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
-      //   console.log(res.data.data)
-      // })
+      this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
+        console.log(res.data.data)
+      })
+      return;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
