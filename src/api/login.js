@@ -25,3 +25,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function dbapi(params) {
+  return request({
+    url: '/douyuapi/RoomApi/live',
+    method: 'get',
+    params: params
+  })
+}

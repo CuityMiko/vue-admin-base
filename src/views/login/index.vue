@@ -22,7 +22,7 @@
           Sign in
         </el-button>
       </el-form-item>
-      <el-form-item v-show="false">
+      <el-form-item v-show="true">
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="testapi">
           test api
         </el-button>
@@ -39,6 +39,8 @@
 import { isvalidUsername } from '@/utils/validate'
 
 import * as testapi from '@/api/test'
+
+import { dbapi } from '@/api/login.js'
 
 export default {
   name: 'login',
@@ -71,11 +73,12 @@ export default {
     }
   },
   mounted () {
-    var socket = io.connect('47.97.190.44:3003');
+    var socket = io.connect('http://scenic-h5.chuangjiangx.com:3003');
+    var _self = this;
     // 监听从服务器端传过来的消息
     socket.on("notice", function(msg) {
         if (msg) {
-            this.$message(msg)
+            _self.$message(msg)
         }
     });
   },
@@ -88,8 +91,16 @@ export default {
       }
     },
     handleLogin() {
-      this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
-        console.log(res.data.data)
+      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
+      //   console.log(res.data.data)
+      // })
+      dbapi({
+        offset: 3,
+        limit: 30
+      }).then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
       })
       return;
       this.$refs.loginForm.validate(valid => {
