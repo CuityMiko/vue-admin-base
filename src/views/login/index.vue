@@ -31,6 +31,9 @@
         <span style="margin-right:20px;">username: admin</span>
         <span> password: admin</span>
       </div>
+      <div class="tips">
+        <icon-svg icon-class="zuqiu" class="main-icon"></icon-svg>
+      </div>
     </el-form>
   </div>
 </template>
@@ -73,14 +76,14 @@ export default {
     }
   },
   mounted () {
-    var socket = io.connect('http://scenic-h5.chuangjiangx.com:3003');
-    var _self = this;
-    // 监听从服务器端传过来的消息
-    socket.on("notice", function(msg) {
-        if (msg) {
-            _self.$message(msg)
-        }
-    });
+    // var socket = io.connect('http://scenic-h5.chuangjiangx.com:3003');
+    // var _self = this;
+    // // 监听从服务器端传过来的消息
+    // socket.on("notice", function(msg) {
+    //     if (msg) {
+    //         _self.$message(msg)
+    //     }
+    // });
   },
   methods: {
     showPwd() {
@@ -91,9 +94,9 @@ export default {
       }
     },
     handleLogin() {
-      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
-      //   console.log(res.data.data)
-      // })
+      this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
+        console.log(res.data.data)
+      })
       dbapi({
         offset: 3,
         limit: 30
@@ -214,6 +217,10 @@ export default {
       position: absolute;
       right: 35px;
       bottom: 28px;
+    }
+    .main-icon {
+      width: 2.4rem;
+      height: 2.4rem;
     }
   }
 </style>
