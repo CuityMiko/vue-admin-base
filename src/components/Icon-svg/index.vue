@@ -1,5 +1,5 @@
 <template>
-  <svg class="svg-icon main-icons" aria-hidden="true">
+  <svg class="svg-icon" aria-hidden="true">
     <use :xlink:href="iconName"></use>
   </svg>
 </template>
@@ -21,8 +21,11 @@ export default {
 }
 </script>
 <style scoped>
-  .main-icons {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 </style>

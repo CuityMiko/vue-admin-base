@@ -5,34 +5,26 @@
       <h3 class="title">CJ-Admin</h3>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
+          <icon-svg icon-class="user" />
         </span>
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
+          <icon-svg icon-class="password"></icon-svg>
         </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="password"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
+          <span class="show-pwd" @click="showPwd"><icon-svg icon-class="eye" /></span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
-          Sign in
-        </el-button>
-      </el-form-item>
-      <el-form-item v-show="true">
-        <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="testapi">
-          test api
+          登 录
         </el-button>
       </el-form-item>
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: admin</span>
-      </div>
-      <div class="tips">
-        <icon-svg icon-class="zuqiu" class="main-icon"></icon-svg>
       </div>
     </el-form>
   </div>
@@ -40,10 +32,6 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
-
-import * as testapi from '@/api/test'
-
-import { dbapi } from '@/api/login.js'
 
 export default {
   name: 'login',
@@ -76,14 +64,6 @@ export default {
     }
   },
   mounted () {
-    // var socket = io.connect('http://scenic-h5.chuangjiangx.com:3003');
-    // var _self = this;
-    // // 监听从服务器端传过来的消息
-    // socket.on("notice", function(msg) {
-    //     if (msg) {
-    //         _self.$message(msg)
-    //     }
-    // });
   },
   methods: {
     showPwd() {
@@ -94,18 +74,6 @@ export default {
       }
     },
     handleLogin() {
-      this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
-        console.log(res.data.data)
-      })
-      dbapi({
-        offset: 3,
-        limit: 30
-      }).then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      })
-      return;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
@@ -120,20 +88,6 @@ export default {
           return false
         }
       })
-    },
-    testapi() {
-      testapi.getdoubandata(this).then(data => {
-        console.log(data);
-      })
-      testapi.getmockdata(this,2).then(data => {
-        console.log(data);
-      })
-      testapi.getnodedata(this).then(data => {
-        console.log(data);
-      })
-      // this.$http.get(`/douyuapi/RoomApi/live?offset=1&limit=20`).then(res => {
-      //   console.log(res.data.data)
-      // })
     }
   }
 }
